@@ -1,26 +1,81 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
+/*
+  Concrete platform, asphalt ink and the yellow safety strip at the platform
+  edge. Line colors come from each line and are set inline as --line/--line-ink.
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #e7e8e2;
+  --surface: #f5f5f1;
+  --ink: #16181b;
+  --muted: #5d6159;
+  --rule: #c6c8bf;
+  --signal: #ffcc00;
+  --signal-ink: #16181b;
+  --line: #16181b;
+  --line-ink: #ffffff;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #111315;
+    --surface: #1a1d20;
+    --ink: #ecede8;
+    --muted: #999c95;
+    --rule: #2d3135;
+    --signal: #ffcc00;
+    --signal-ink: #16181b;
+    color-scheme: dark;
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-line: var(--line);
+  --color-line-ink: var(--line-ink);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-barlow), system-ui, sans-serif;
+  font-feature-settings: 'tnum' 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+}
+
+@keyframes train-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+.train-dot {
+  animation: train-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .train-dot {
+    animation: none;
+  }
+  * {
+    transition-duration: 0s !important;
+  }
 }
