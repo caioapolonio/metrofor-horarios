@@ -64,7 +64,7 @@ bun install
 bun run dev
 ```
 
-O site abre em http://localhost:3000.
+O site abre em http://localhost:3217. A porta é fixa para bater com a restrição da chave do Google Maps (veja abaixo).
 
 ### Atualizar os horários
 
@@ -89,6 +89,8 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=sua-chave
 # opcional: Map ID vetorial para modo escuro e marcadores personalizados
 NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=seu-map-id
 ```
+
+A chave fica visível no navegador, como em todo site que usa o Google Maps. Proteja-a no Google Cloud restringindo os referenciadores HTTP aos seus domínios e a `http://localhost:3217/*`, e a API à Maps JavaScript API.
 
 Se o Google recusar a chave (domínio não autorizado, cota, chave errada), o site volta sozinho para o mapa desenhado.
 
