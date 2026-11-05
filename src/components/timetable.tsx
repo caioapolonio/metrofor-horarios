@@ -73,7 +73,7 @@ function dayChoices(line: Line, now: ClockNow | null): DayChoice[] {
     choices.push({
       key: `e-${e.date}`,
       label: `${capitalize(SHORT[dayOf(e.date)])} ${formatDate(e.date)}`,
-      note: 'especial',
+      note: e.timetable === null ? 'sem trens' : 'especial',
       timetable: e.timetable,
       date: e.date,
     })
